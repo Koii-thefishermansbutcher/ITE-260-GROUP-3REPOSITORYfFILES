@@ -1,33 +1,73 @@
-n1 = float(input("Enter Marks in Philosophy: "))
-n2 = float(input("Enter Marks in MIL: "))
-n3 = float(input("Enter Marks in CNF: "))
-n4 = float(input("Enter Marks in Research: "))
-n5 = float(input("Enter Marks in E-tech: "))
-n6 = float(input("Enter Marks in PEH: "))
-n7 = float(input("Enter Marks in DISS: "))
-n8 = float(input("Enter Marks in EAPP: "))
-n9 = float(input("Enter Marks in ConArt: "))
-n10 = float(input("Enter Marks in Earth & Life: "))
-n11 = float(input("Enter Marks in Oral Comm: "))
-n12 = float(input("Enter Marks in WRB: "))
-total = n1 + n2 + n3 + n4 + n5 + n6 + n7 + n8 + n9 + n10 + n11 + n12
-max_total = 12 * 100  
-percentage = (total / max_total) * 100
-print("The Sum is:", total)
-print("The Percentage Is:", percentage)
-if percentage >= 90:
-    print("Grade: A+")
-elif percentage >= 80:
-    print("Grade: A")
-elif percentage >= 70:
-    print("Grade: B+")
-elif percentage >= 60:
-    print("Grade: B")
-elif percentage >= 50:
-    print("Grade: C+")
-elif percentage >= 40:
-    print("Grade: C")
-elif percentage >= 30:
-    print("Grade: D+")
-else:
-    print("Grade: F")
+import time
+print("GWA Program")
+
+def text_delay(text, delay=0.008):
+    for char in text:
+        print(char, end='', flush=True)
+        time.sleep(delay)
+    print()
+
+def get_grades(subject):
+    while True:
+        try:
+            grades =  float(input(f"Enter your marks in {subject}: "))
+            if grades < 0  or grades > 100:
+                print("Please enter a number between 1 - 100")
+            else:
+                return grades
+                break    
+        except ValueError:
+            print("Please enter a valid  number")
+while True:
+    subjects = ["Physics", "Biology", "Chemistry", "Philosophy", "Calculus", "Physical Education",
+    "Media Information Literacy", "Statistics and Probability", "Disaster Risk Reduction Management",
+    "Contemporary Arts", "Oral Communication", "Earth Science"]
+    
+    grades = {}
+    
+    for subject in subjects:
+        grades[subject] = get_grades(subject)
+    print("—"*25)
+    for subject, grade in grades.items():
+        text_delay(f"{subject}: {grade}")
+    
+        
+    total = sum(grades.values()) / len(subjects)
+    
+    print("—"*25)
+    text_delay(f"Your GWA  is: {total: .2f}")
+    print()
+    
+    if total >= 90:
+        print("You got an A+!")
+        
+    elif total >= 80:
+        print("You got an A!")
+    
+    elif total >= 70:
+        print("You got a B+!")
+        
+    elif total >= 60:
+        print("You got an B!")
+        
+    elif total >= 50:
+        print("You got an C+!")
+    
+    elif total >= 40:
+        print("You got an C!")
+        
+    elif total >= 30:
+        print("You got an D!")
+        
+    elif total >= 20:
+        print("You failed!")
+    
+    print("—"*25)
+    
+    again = input("Would you like to check again? y/n: ")
+    
+    if again.lower() != "y":
+        print("Goodbye!")
+        break
+    
+    
